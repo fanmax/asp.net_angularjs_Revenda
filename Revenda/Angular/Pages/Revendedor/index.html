@@ -1,0 +1,78 @@
+﻿<style>
+    body {
+        margin-top: 70px;
+    }
+</style>
+
+<div class="container">
+    <div id="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Seja bem-vindo(a) {{vm.Perfil.Nome}}</div>
+            <div class="panel-body" style="min-height:600px;">
+
+                <ul class="nav nav-tabs">
+                    <li role="presentation" ng-class="{'active' : vm.isSet(1)}"><a href="javascript:void(0)" ng-click="vm.setTab(1)">Visitas (Disponiveis)</a></li>
+                    <li role="presentation" ng-class="{'active' : vm.isSet(2)}"><a href="javascript:void(0)" ng-click="vm.setTab(2)">Visitas (Agendadas)</a></li>
+                    <li role="presentation" ng-class="{'active' : vm.isSet(3)}"><a href="javascript:void(0)" ng-click="vm.setTab(3)">Visitas (Realizadas)</a></li>
+                    <li role="presentation" ng-class="{'active' : vm.isSet(4)}"><a href="javascript:void(0)" ng-click="vm.setTab(4)">Perfil</a></li>
+                </ul>
+
+                <div ng-show="vm.isSet(1)" class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Data</th>
+                                <th>Cliente</th>
+                                <th>Distancia</th>
+                                <th>Visitar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="v in vm.visitas">
+                                <th scope="row">{{v.Id}}</th>
+                                <th>{{v.DataVisita.slice(6, -2) | date:'dd/MM/yyyy HH:mm'}}</th>
+                                <td>{{v.Cliente.Nome}}</td>
+                                <td>{{v.Distancia}}{{vm.getDistancia(v)}} KM</td>                                                                                               
+                                <td><button class="btn btn-xs btn-primary" ng-click="vm.PegarVisita(v)"><i class="glyphicon glyphicon-ok-sign"></i></button></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-show="vm.isSet(2)" class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Data</th>
+                                <th>Cliente</th>
+                                <th>Distancia</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="v in vm.visitas">
+                                <th scope="row">{{v.Id}}</th>
+                                <th>{{v.DataVisita.slice(6, -2) | date:'dd/MM/yyyy HH:mm'}}</th>
+                                <td>{{v.Cliente.Nome}}</td>
+                                <td>{{v.Distancia}}{{vm.getDistancia(v)}}KM</td>     
+                                <td><button class="btn btn-xs btn-primary" ng-click="vm.findMap(v)"><i class="glyphicon glyphicon-map-marker"></i></button></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-show="vm.isSet(5)" class="col-md-12">
+                    <div id="mapFull"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+oi{{vm.getDistancia()}}
+
+

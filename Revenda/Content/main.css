@@ -1,0 +1,14 @@
+﻿body {
+    width: 100%; 
+    height: 100%; 
+    padding: 0px;
+    margin: 0px;
+}
+
+
+#mapFull{
+    background-color:#000; 
+    width:100%; 
+    min-height:500px;  
+    position:absolute; 
+    }

@@ -1,0 +1,53 @@
+﻿<style>
+    body {
+        margin-top: 70px;
+    }
+</style>
+
+<div class="container">
+    <div id="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Seja bem-vindo(a) {{vm.Perfil.Nome}}</div>
+            <div class="panel-body">
+                
+                <ul class="nav nav-tabs">
+                    <li role="presentation" ng-class="{'active' : vm.isSet(1)}"><a href="javascript:void(0)" ng-click="vm.setTab(1)">Visitas</a></li>
+                    <li role="presentation" ng-class="{'active' : vm.isSet(2)}"><a href="javascript:void(0)" ng-click="vm.setTab(2)">Solicitar Visita</a></li>
+                    <li role="presentation" ng-class="{'active' : vm.isSet(3)}"><a href="javascript:void(0)" ng-click="vm.setTab(3)">Perfil</a></li>
+                </ul>
+
+                <div ng-show="vm.isSet(1)" class="col-md-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Data</th>
+                            <th>Revendedor</th>
+                            <th>Visitou</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="v in vm.visitas">
+                            <th scope="row">{{v.Id}}</th>
+                            <th>{{v.DataVisita.slice(6, -2) | date:'dd/MM/yyyy HH:mm'}}</th>
+                            <td>{{v.Revendedor.Nome}}</td>
+                            <td>{{v.Revendedor.Visitou}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-show="vm.isSet(2)" class="col-md-3">
+                    <form>
+                        <div class="form-group">
+                            <label for="data">Data da visita</label>
+                            <input type="datetime-local" class="form-control" ng-model="vm.formVisita.DataVisita">
+                        </div>
+                    </form>
+                    <button class="btn btn-success" ng-click="vm.adicionarVisita(vm.formVisita)">Adicionar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
